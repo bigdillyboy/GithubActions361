@@ -4,13 +4,25 @@ on: [push, pull_request]
 
 jobs:
   check-bats-version:
-    runs-on: ubuntu-20.04 
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+
+      - name: Install mono
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mono-complete
+
+      - name: Download NuGet.exe
+        run: |
+          curl -O https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+      - name: NuGet Restore (for packages folder)
+        run: mono nuget.exe restore GithubActions.sln
+
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '5.0.301'
-      - name: Restore packages
-        run: dotnet restore GithubActions.sln
+
       - name: Build
         run: msbuild /p:Configuration=Release GithubActions.sln

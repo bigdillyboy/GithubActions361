@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 
 namespace GithubActionsLab
@@ -30,6 +30,30 @@ namespace GithubActionsLab
             Assert.Throws<ArgumentNullException>(() => Program.Add(null, null));
         }
 
-        // Implement 3 tests per operation, following a similar pattern as above
+        // ✅ Power method tests
+        [Test]
+        public void Power_Valid()
+        {
+            Assert.AreEqual(8, Program.Power("2", "3"));
+            Assert.AreEqual(1, Program.Power("5", "0"));
+            Assert.AreEqual(0.25, Program.Power("2", "-2"));
+        }
+
+        [Test]
+        public void Power_Invalid()
+        {
+            Assert.Throws<FormatException>(() => Program.Power("a", "2"));
+            Assert.Throws<FormatException>(() => Program.Power("2", "b"));
+            Assert.Throws<FormatException>(() => Program.Power("x", "y"));
+        }
+
+        [Test]
+        public void Power_Null()
+        {
+            Assert.Throws<ArgumentNullException>(() => Program.Power(null, "2"));
+            Assert.Throws<ArgumentNullException>(() => Program.Power("2", null));
+            Assert.Throws<ArgumentNullException>(() => Program.Power(null, null));
+        }
     }
 }
+

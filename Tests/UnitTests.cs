@@ -7,7 +7,7 @@ namespace GithubActionsLab
     public class Math
     {
         [Test]
-        public void Add_Valid()
+        public void Add_ValidMostek()
         {
             Assert.AreEqual(3, Program.Add("1", "2"));
             Assert.AreEqual(5, Program.Add("3", "2"));
@@ -15,7 +15,7 @@ namespace GithubActionsLab
         }
 
         [Test]
-        public void Add_Invalid()
+        public void Add_InvalidMostek()
         {
             Assert.Throws<FormatException>(() => Program.Add("1", "a"));
             Assert.Throws<FormatException>(() => Program.Add("a", "1"));
@@ -23,16 +23,16 @@ namespace GithubActionsLab
         }
 
         [Test]
-        public void Add_Null()
+        public void Add_NullMostek()
         {
             Assert.Throws<ArgumentNullException>(() => Program.Add("1", null));
             Assert.Throws<ArgumentNullException>(() => Program.Add(null, "1"));
             Assert.Throws<ArgumentNullException>(() => Program.Add(null, null));
         }
 
-        // ✅ Power method tests
+      
         [Test]
-        public void Power_Valid()
+        public void Power_ValidMostek()
         {
             Assert.AreEqual(8, Program.Power("2", "3"));
             Assert.AreEqual(1, Program.Power("5", "0"));
@@ -40,7 +40,7 @@ namespace GithubActionsLab
         }
 
         [Test]
-        public void Power_Invalid()
+        public void Power_InvalidMostek()
         {
             Assert.Throws<FormatException>(() => Program.Power("a", "2"));
             Assert.Throws<FormatException>(() => Program.Power("2", "b"));
@@ -48,7 +48,7 @@ namespace GithubActionsLab
         }
 
         [Test]
-        public void Power_Null()
+        public void Power_NullMostek()
         {
             Assert.Throws<ArgumentNullException>(() => Program.Power(null, "2"));
             Assert.Throws<ArgumentNullException>(() => Program.Power("2", null));
